@@ -1,0 +1,133 @@
+<html>
+	<head>
+		<title>Справочник</title>
+		<link rel="shotcut icon" href="icon.png" type="image/png">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body style="background-color: #5c4f4f	">
+		<h1><div class="rectangle text">Тест</div></h1>
+		<div class="sidenav">
+			<a href="радиация.html">Радиация, мутанты</a>
+			<a href="вирус.html">Зомби-апокалипсис</a>
+			<a href="зима.html">Торжество природы</a>
+			<a href="тест.html">Вы здесь</a>
+		</div>
+<h3><div>		
+<script>
+var questions=[
+{
+	text: "На кого воздействует зомби-вирус:",
+	answers: ["только на людей",
+		  "на людей и животных",
+		  "на людей и зверей"],
+	correctAnswer: 1 
+},
+{
+	text: "В случае ядерной зимы следует:",
+	answers: ["остаться в городе, ведь припасов в магазинах надолго хватит",
+		  "стать каннибалом и есть себе подобных",
+		  "перебраться в деревню, начать вести сельское хозяйство"],
+	correctAnswer: 2
+},
+{
+	text: "Озоновый слой страдает из-за:",
+	answers: ["таяния ледников",
+		  "взрывов атомных бомб",
+		  "из-за гибели деревьев"],
+	correctAnswer: 1
+},
+{
+	text: "Зомби-апокалипсис может произойти в результате:",
+	answers: ["использования биооружия",
+		  "использования ядерного оружия",
+		  "просмотра телевизора"],
+	correctAnswer: 0
+},
+{
+	text: "В случае укуса зомби необходимо:",
+	answers: ["вколоть лекарство в место укуса, продезинфицировать рану и перевязать ее",
+		  "немедленно отрезать пораженную конечность",
+		  "немедленно отправиться за помощью в ближайшую больницу"],
+	correctAnswer: 1
+},
+{
+	text: "Чтобы спастись от опасных солнечных лучей при слабом озоновом слое, нужно:",
+	answers: ["постоянно принимать предписанные лекарства и мазать открытые участки тела мазью",
+		  "носить скрывающую все тело плотную одежду",
+		  "оставаться дома и не выходить на улицу, так как эти лучи смертельны"],
+	correctAnswer: 1
+},
+{
+	text: "Заметив мутанта, группе выживших следует:",
+	answers: ["незаметно для него перебраться в укрытие и переждать",
+		  "напасть на него, используя тактику отвлечения",
+		  "напугать его громкими звуками и выстрелами"],
+	correctAnswer: 0
+},
+{
+	text: "Радиацию можно заметить:",
+	answers: ["с помощью обоняния, т.к. радиация источает особый запах",
+		  "при помощи счетчика Гейгера, а также специальных приложений на телефоне",
+		  "при помощи счетчика Гейгера"],
+	correctAnswer: 2 
+}
+];
+
+var yourAns = new Array;
+var score = 0;
+
+function Engine(question, answer) {yourAns[question]=answer;}
+
+function Score(){
+   var answerText = "Результаты:\n";
+   for(var i = 0; i < yourAns.length; ++i){
+	var num = i+1;
+	answerText=answerText+"\n    Вопрос №"+ num +"";
+	if(yourAns[i]!=questions[i].correctAnswer){
+	    answerText=answerText+"\n    Правильный ответ: " +
+		questions[i].answers[questions[i].correctAnswer] + "\n";
+	  }
+        else{
+	    answerText=answerText+": Верно! \n";
+	    ++score;
+	    }
+       }
+
+   answerText=answerText+"\nВсего правильных ответов: "+score+"\n";
+
+   alert(answerText);
+   yourAns = [];
+   score = 0;
+   clearForm("quiz");
+}
+function clearForm(name) {
+   var f = document.forms[name];
+   for(var i = 0; i < f.elements.length; ++i) {
+	if(f.elements[i].checked)
+		f.elements[i].checked = false;
+}
+}
+</script>
+    <form name="quiz">
+    <ol>
+        <script>
+        for(var q=0; q<questions.length; ++q) {
+           var question = questions[q];
+           var idx = 1 + q;
+
+           document.writeln('<li><p><span class="quest">' + question.text + '</span></p><br>');
+           for(var i in question.answers) {
+            document.writeln('<label><input type=radio name="q' + idx + '" value="' + i +
+            '" onClick="Engine(' + q + ', this.value)"> ' + question.answers[i] + '</label><br>');
+        }
+            document.writeln('</li>');
+        }
+        </script>
+    </ol>
+        <br>
+		<button class="btn" onClick="Score()">Завершить тест</button>
+    </form>
+</div></h3>
+
+	</body>
+</html>
